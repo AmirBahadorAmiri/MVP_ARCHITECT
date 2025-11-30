@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/activity_noteview_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/blue"
+        android:elevation="2dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/activity_noteview_toolbar_back_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:clickable="true"
+        android:elevation="2dp"
+        android:focusable="true"
+        android:foreground="@drawable/ripple_color"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/activity_noteview_toolbar"
+        app:layout_constraintLeft_toLeftOf="@id/activity_noteview_toolbar"
+        app:layout_constraintTop_toTopOf="@id/activity_noteview_toolbar"
+        app:srcCompat="@drawable/ic_back" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:text="Edit Task"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/activity_noteview_toolbar_back_icon"
+        app:layout_constraintLeft_toRightOf="@id/activity_noteview_toolbar_back_icon"
+        app:layout_constraintTop_toTopOf="@id/activity_noteview_toolbar_back_icon" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/activity_noteview_toolbar_delete_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:elevation="2dp"
+        android:focusable="true"
+        android:foreground="@drawable/ripple_color"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/activity_noteview_toolbar"
+        app:layout_constraintRight_toRightOf="@id/activity_noteview_toolbar"
+        app:layout_constraintTop_toTopOf="@id/activity_noteview_toolbar"
+        app:srcCompat="@drawable/ic_delete" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/activity_noteview_toolbar_save_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:elevation="2dp"
+        android:focusable="true"
+        android:foreground="@drawable/ripple_color"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/activity_noteview_toolbar"
+        app:layout_constraintRight_toLeftOf="@id/activity_noteview_toolbar_delete_icon"
+        app:layout_constraintTop_toTopOf="@id/activity_noteview_toolbar"
+        app:srcCompat="@drawable/ic_save" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/activity_noteview_note_title"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/main_shape_radius_8"
+        android:backgroundTint="@color/editTextBackground"
+        android:hint="Task Title..."
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/editTextHintColor"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_noteview_toolbar" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/activity_noteview_note_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@android:color/transparent"
+        android:gravity="top"
+        android:hint="Add Your Text..."
+        android:textColor="@color/black"
+        android:textColorHint="@color/editTextHintColor"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/activity_noteview_note_title"
+        app:layout_constraintRight_toRightOf="@id/activity_noteview_note_title"
+        app:layout_constraintTop_toBottomOf="@id/activity_noteview_note_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
