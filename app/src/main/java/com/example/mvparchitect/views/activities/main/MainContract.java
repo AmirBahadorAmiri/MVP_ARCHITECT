@@ -29,7 +29,7 @@ public interface MainContract {
 
     interface MainPresenter extends BaseContract.BasePresenter<MainView> {
 
-        void onDeleteAllNote();
+        void onDeleteAllNote(int count);
 
         void fabClickListener();
 

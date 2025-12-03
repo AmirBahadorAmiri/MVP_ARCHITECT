@@ -54,22 +54,29 @@ public class MainActivity extends BaseActivity implements MainContract.MainView 
     }
 
     private void setupViews() {
-        noteAdapter = new NoteAdapter(this, RoomDB.getRoomDB(this).getNoteDao());
+        noteAdapter = new NoteAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         activity_main_tasks_recyclerview.setLayoutManager(linearLayoutManager);
         activity_main_tasks_recyclerview.setAdapter(noteAdapter);
 
-        findViewById(R.id.activity_main_icon_delete).setOnClickListener(v -> mainActivityPresenter.onDeleteAllNote());
+        findViewById(R.id.activity_main_icon_delete).setOnClickListener(v -> mainActivityPresenter.onDeleteAllNote(noteAdapter.getItemCount()));
         findViewById(R.id.activity_main_icon_add).setOnClickListener(v -> mainActivityPresenter.fabClickListener());
 
         activity_main_searchbar.addTextChangedListener(new TextWatcher() {
-            @Override public void afterTextChanged(Editable s) {
+            @Override
+            public void afterTextChanged(Editable s) {
                 mainActivityPresenter.onSearch(Objects.requireNonNull(s.toString()));
             }
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
         });
 
     }

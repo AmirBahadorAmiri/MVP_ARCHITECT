@@ -30,11 +30,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
 
     public List<Note> noteList = new ArrayList<>();
     public MainContract.MainView mainView;
-    public NoteDao noteDao;
 
-    public NoteAdapter(MainContract.MainView mainView, NoteDao noteDao) {
+    public NoteAdapter(MainContract.MainView mainView) {
         this.mainView = mainView;
-        this.noteDao = noteDao;
     }
 
     public void addNotes(List<Note> notes) { /* Not implemented */}
@@ -152,30 +150,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
     }
 
     public void deleteAllNotes() {
-        if (noteList.isEmpty()) {
-            mainView.showToast("لیست نوت ها خالی میباشد", Toast.LENGTH_SHORT);
-        } else {
-            noteDao.deleteAll()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new CompletableObserver() {
-                        @Override
-                        public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
-                        }
-
-                        @Override
-                        public void onComplete() {
-                            notifyItemRangeRemoved(0, noteList.size());
-                            noteList.clear();
-                            mainView.showToast("تمامی نوت ها پاک شدند", Toast.LENGTH_SHORT);
-                        }
-
-                        @Override
-                        public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-                        }
-                    });
-        }
-
+        notifyItemRangeRemoved(0, noteList.size());
+        noteList.clear();
     }
 
     public void showNotes(List<Note> notes) {

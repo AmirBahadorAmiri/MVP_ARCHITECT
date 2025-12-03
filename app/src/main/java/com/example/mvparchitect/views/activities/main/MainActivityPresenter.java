@@ -1,5 +1,7 @@
 package com.example.mvparchitect.views.activities.main;
 
+import android.widget.Toast;
+
 import com.example.mvparchitect.models.Note;
 import com.example.mvparchitect.tools.roomdb.NoteDao;
 
@@ -7,6 +9,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -33,8 +36,29 @@ public class MainActivityPresenter implements MainContract.MainPresenter {
 
 
     @Override
-    public void onDeleteAllNote() {
-        this.mainView.deleteAllNotes();
+    public void onDeleteAllNote(int count) {
+        if (count == 0) {
+            mainView.showToast("لیست نوت ها خالی میباشد", Toast.LENGTH_SHORT);
+        } else {
+            noteDao.deleteAll()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new CompletableObserver() {
+                        @Override
+                        public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            mainView.deleteAllNotes();
+                            mainView.showToast("تمامی نوت ها پاک شدند", Toast.LENGTH_SHORT);
+                        }
+
+                        @Override
+                        public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                        }
+                    });
+        }
     }
 
     @Override
